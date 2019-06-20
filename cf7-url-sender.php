@@ -8,6 +8,17 @@
  * Author URI: http://www.lucasgiovanny.com
  */
 
+register_activation_hook( __FILE__, 'child_plugin_activate' );
+
+function child_plugin_activate(){
+
+    if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) and current_user_can( 'activate_plugins' ) ) {
+        // Stop activation redirect and show error
+        wp_die('Sorry, but this plugin requires Contact Form 7 to be installed and active. <br><br> <a href="' . admin_url( 'plugins.php' ) . '">&laquo; Return to Plugins</a>');
+    }
+
+}
+
 function activate_cf7datasend()
 {
     add_option('base_url', 'https://exemple.com/');
@@ -23,6 +34,9 @@ function admin_init_cf7datasend()
 {
     register_setting('cf7datasend', 'base_url');
     register_setting('cf7datasend', 'form_id');
+    register_setting('cf7datasend', 'fieldsname');
+    register_setting('cf7datasend', 'params');
+    register_setting('cf7datasend', 'validations');
 }
 
 function admin_menu_cf7datasend()
@@ -32,7 +46,7 @@ function admin_menu_cf7datasend()
 
 function options_page_cf7datasend()
 {
-    include WP_PLUGIN_DIR . '/cf7-data-send/options.php';
+    include WP_PLUGIN_DIR . '/cf7-data-send/settings.php';
 }
 
 function cf7datasend($contact_form)
@@ -40,13 +54,21 @@ function cf7datasend($contact_form)
 
     $url = get_option('base_url');
 
-    // confere_se é o form
-    // seta variavel com url das configs
-    // seta os campos
-    //  valida campos criticos
-    // monta url final
-    //  converte para url
-    // chama curl
+    $form = get_option('form_id');
+
+    $fields = get_option('fieldsname');
+    $params = get_option('params');
+    $validation = get_option('validations');
+
+    // if form
+        // foreach post
+            // if post esta em fields
+                // se sim, valida
+                    // valido entra no objeto param = post
+
+    // foreach no objeto montando url
+
+    // chama url
 
     $title = $contact_form->title;
     $submission = WPCF7_Submission::get_instance();
@@ -54,23 +76,7 @@ function cf7datasend($contact_form)
         $posted_data = $submission->get_posted_data();
     }
 
-    // Seta todos os campos
     $name = $posted_data["sede"];
-    // $mobile = $posted_data["email"];
-    // $car = $posted_data["email"];
-    // $contactDate = $posted_data["email"];
-    // $email = $posted_data["email"];
-    // $observation = $posted_data["email"];
-    // $marca = $posted_data["email"];
-    // $headquarters = $posted_data["email"];
-    // $source = $posted_data["email"];
-    // $medio = $posted_data["email"];
-    // $email = $posted_data["email"];
-
-    // Valida os dados
-    // Trata os dados
-    // Monta URL (Checa a barra no final)
-    // Envia a URL
 
     $url = "http://localhost:8888/freelancer/re.php?email=" . $name;
 
