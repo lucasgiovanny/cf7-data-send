@@ -75,7 +75,7 @@ function logerror($log)
 {
     $date = date('Y-m-d H:i:s');
     $logfinal = "[{$date}]: " . $log;
-    $file = WP_PLUGIN_DIR . "/log.log";
+    $file = WP_PLUGIN_DIR . "/cf7-data-send/log.log";
     file_put_contents($file, $logfinal, FILE_APPEND);
 }
 
@@ -114,7 +114,7 @@ add_action('wpcf7_before_send_mail', function ($contact_form) {
                         );
                     } else {
                         $trava = true;
-                        logerror("ABORTING: Field {$key} with value {$value} has an error of validation.");
+                        logerror("ABORTING: Field {$key} with value {$value} has an error of validation. \n");
                     }
                 } else {
                     $data[] = array(
@@ -146,7 +146,7 @@ add_action('wpcf7_before_send_mail', function ($contact_form) {
 
                 if (curl_errno($ch)) {
                     $error = curl_error($ch);
-                    logerror("ERROR: {$error}");
+                    logerror("ERROR: {$error} \n");
                 }
                 curl_close($ch);
 
@@ -154,7 +154,7 @@ add_action('wpcf7_before_send_mail', function ($contact_form) {
         }
 
     } else {
-        logerror("ABORTING: Form submitted is not watched.");
+        logerror("ABORTING: Form submitted is not watched. \n");
     }
 
 });
