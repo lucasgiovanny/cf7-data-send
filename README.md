@@ -7,7 +7,7 @@ After installing the plugin, go to Settings Menu > CF7 Data to URL. You need to 
 
 Base URL to send data: this would be the URL that receive the data sended.
 Contact Form 7 to be watched: Select the form to be whatched.
-Fields: Click in "Add field" and add as many as you need it. Put the CF7 Field Name, The Url paramns that goes with the data and if the field has validation or not.
+Fields: Click in "Add field" and add as many as you need it. (Put the CF7 Field Name, The Url paramns that goes with the data and if the field has validation or not).
 
 
 
