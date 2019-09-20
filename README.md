@@ -11,7 +11,7 @@ Fields: Click in "Add field" and add as many as you need it. Put the CF7 Field N
 
 
 
-## CF7 Tip: "Select Field" defining values.
+### CF7 Tip: "Select Field" defining values.
 When you use pipe (|) the value of the right is the value of the option.
 The same goes for checkboxes and radio buttons
 
@@ -20,5 +20,3 @@ Exemple 1:
 
 Exemple 2:
 [select* sede "BogotaMorato|124" "BogotaAv.ElDorado|125" "Armenia|126" "Manizales|127" "PereiraBusesyCamiones|128" "PereiraLaVilla|130" "BogotaBusesyCamiones|360" "BogotaCalle127|355" "BogotaAvenidaElDorado|354" "Cali|172" "Yopal|173" "Chia|195" "BogotaAve.ElDorado|227" "MGBogota|216" "MaxusBogota|361" "CALLE26(USADOS)|299" "AudiManizales|305" "AudiPereira|306" "AudiBogota|315" "BogotaBRP|326"]
-
-So, using this, dont need to use your JS code to transform data.
